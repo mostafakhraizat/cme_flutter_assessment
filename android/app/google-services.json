@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "486108475634",
+    "project_id": "cme-assessment",
+    "storage_bucket": "cme-assessment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486108475634:android:fb8d533770b5ce03c1e06b",
+        "android_client_info": {
+          "package_name": "com.example.cme_flutter_assessment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKUimx-86ytzwIKKDS7d1ruACuHXmF-Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
