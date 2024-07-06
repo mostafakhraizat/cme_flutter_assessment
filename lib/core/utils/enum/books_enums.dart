@@ -1,4 +1,9 @@
-enum BooksResponseState{
+enum BooksResponseState {
   success,
-  fail,
+  successEmpty,
+  networkError,
+  serverError,
+  clientError,
+  formatError,
+  unknown,
 }

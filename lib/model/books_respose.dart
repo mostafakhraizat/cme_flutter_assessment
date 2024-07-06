@@ -5,5 +5,8 @@ import 'book.dart';
 class BooksResponse {
   late final BooksResponseState booksResponseState;
   final List<Book> books;
-  BooksResponse(this.booksResponseState, this.books);
+  BooksResponse(
+    this.booksResponseState, {
+    this.books = const [],
+  });
 }

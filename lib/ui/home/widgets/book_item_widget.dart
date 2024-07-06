@@ -19,7 +19,6 @@ class BookItem extends StatelessWidget {
           ),
           12.horizontalSpace,
           Expanded(
-            // Constrain the width of the title column
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -36,9 +35,9 @@ class BookItem extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(
+          Icon(
             Icons.drag_handle,
-            color: AppColors.actionIconColor,
+            color: Theme.of(context).iconTheme.color,
           )
         ],
       ),

@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/config/dio_config.dart';
 
-
 void main() async {
   client = Api();
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +33,9 @@ class MyApp extends StatelessWidget {
             title: 'Bookly',
             themeMode: ThemeMode.dark,
             darkTheme: ThemeData(
+              iconTheme: const IconThemeData(
+                color: Colors.white,
+              ),
               appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(
                   color: Colors.white,
@@ -83,6 +85,59 @@ class MyApp extends StatelessWidget {
               ),
               canvasColor: AppColors.primaryBackgroundPrimary,
               scaffoldBackgroundColor: AppColors.primaryBackgroundPrimary,
+            ),
+            theme: ThemeData(
+              iconTheme: const IconThemeData(
+                color: AppColors.primaryBackgroundPrimary,
+              ),
+              appBarTheme: AppBarTheme(
+                iconTheme: IconThemeData(
+                  color: AppColors.primaryBackgroundPrimary,
+                  size: 24.r,
+                ),
+                elevation: 0.0,
+                centerTitle: true,
+                color: Colors.white,
+                titleTextStyle: TextStyle(
+                  color: AppColors.primaryBackgroundPrimary,
+                  fontSize: 20.0.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              progressIndicatorTheme: const ProgressIndicatorThemeData(
+                color: AppColors.primaryBackgroundPrimary,
+              ),
+              fontFamily: 'OpenSans-Regular',
+              indicatorColor: AppColors.primaryBackgroundPrimary,
+              textTheme: TextTheme(
+                titleLarge: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primaryBackgroundPrimary,
+                  fontSize: 20.sp,
+                ),
+                bodyLarge: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 14.sp,
+                ),
+                headlineLarge: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryBackgroundPrimary,
+                  fontSize: 18.sp,
+                ),
+                titleMedium: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.primaryBackgroundPrimary,
+                  fontSize: 16.sp,
+                ),
+                bodyMedium: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.primaryBackgroundPrimary.withOpacity(0.8),
+                  fontSize: 13.sp,
+                ),
+              ),
+              canvasColor: Colors.white,
+              scaffoldBackgroundColor: Colors.white,
             ),
             home: const AuthenticationPage(),
           );
