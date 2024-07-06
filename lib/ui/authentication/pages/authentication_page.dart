@@ -1,12 +1,11 @@
 import 'package:cme_flutter_assessment/bloc/authentication/authentication_bloc.dart';
-import 'package:cme_flutter_assessment/bloc/authentication/authentication_bloc.dart';
-import 'package:cme_flutter_assessment/resources/paths.dart';
+import 'package:cme_flutter_assessment/data/repository/authentication_repository.dart';
+import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/resources/styles.dart';
 import 'package:cme_flutter_assessment/ui/authentication/widgets/block/authentication_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../widgets/google_authentication_button.dart';
 
 class AuthenticationPage extends StatelessWidget {
@@ -27,7 +26,12 @@ class AuthenticationPage extends StatelessWidget {
             Flexible(
               flex: 2,
               child: BlocProvider(
-                create: (c) => AuthenticationBloc(),
+                create: (c) {
+                  return AuthenticationBloc(
+                      authenticationRepository: AuthenticationRepository(),
+                      secureStorageRepository: SecureStorageRepository())
+                    ..add(CheckSessionAuthenticationEvent(context));
+                },
                 child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
                   builder: (blocContext, state) {
                     return Column(
@@ -36,12 +40,22 @@ class AuthenticationPage extends StatelessWidget {
                         if (state is AuthenticationLoadingState)
                           const CircularProgressIndicator.adaptive()
                         else
-                          GoogleAuthenticationButton(
-                            onTap: () {
-                              blocContext
-                                  .read<AuthenticationBloc>()
-                                  .add(GoogleAuthenticateEvent(context));
-                            },
+                          Column(
+                            children: [
+                              GoogleAuthenticationButton(
+                                onTap: () {
+                                  blocContext
+                                      .read<AuthenticationBloc>()
+                                      .add(GoogleAuthenticateEvent(context));
+                                },
+                              ),
+                              if (state is AuthenticationErrorState)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12.0),
+                                  child: Text(state.reason,
+                                      style: AppTextStyle.bodyErrorStyle),
+                                )
+                            ],
                           ),
                         22.verticalSpace,
                       ],

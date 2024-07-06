@@ -1,9 +1,15 @@
 import 'package:cme_flutter_assessment/resources/colors.dart';
 import 'package:cme_flutter_assessment/ui/authentication/pages/authentication_page.dart';
+import 'package:cme_flutter_assessment/ui/home/pages/main_home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+import 'config/firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -15,6 +21,10 @@ class MyApp extends StatelessWidget {
         enableScaleText: () => true,
         builder: (BuildContext context, Widget? child) {
           return MaterialApp(
+            routes: {
+              "/home": (context) => const MainHomePage(),
+              "/authentication": (context) => const AuthenticationPage(),
+            },
             debugShowCheckedModeBanner: false,
             title: 'Bookly',
             theme: ThemeData(

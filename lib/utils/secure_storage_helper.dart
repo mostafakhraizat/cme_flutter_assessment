@@ -1,8 +1,7 @@
-class SharePreferencesHelper {
-  final FlutterSecureStorage secureStorage;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-  SecureStorageHelper(this.secureStorage);
-
+class SecureStorageHelper {
+  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   Future<void> write(String key, String value) async {
     await secureStorage.write(key: key, value: value);
   }

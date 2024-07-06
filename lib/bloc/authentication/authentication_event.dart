@@ -9,3 +9,10 @@ class GoogleAuthenticateEvent extends AuthenticationEvent {
     this.context,
   );
 }
+
+class CheckSessionAuthenticationEvent extends AuthenticationEvent {
+  final BuildContext context;
+  CheckSessionAuthenticationEvent(
+    this.context,
+  );
+}

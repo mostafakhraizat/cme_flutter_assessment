@@ -3,3 +3,5 @@ class AppPath {
   static const String googleAuthenticationIconPath =
       "assets/vector/authentication/google_logo.svg";
 }
+
+class Strings {}
