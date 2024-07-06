@@ -24,7 +24,6 @@ class AuthenticationBloc
     on<CheckSessionAuthenticationEvent>((event, emit) async {
       final String? storedEmail = await secureStorageRepository.getEmail();
       if (storedEmail != null) {
-        print(storedEmail);
         Navigator.of(event.context).pushReplacementNamed("/home");
       }
     });

@@ -1,5 +1,5 @@
+import 'package:cme_flutter_assessment/core/utils/helper/secure_storage_helper.dart';
 import 'package:cme_flutter_assessment/data/interface/secure_storage_interface.dart';
-import 'package:cme_flutter_assessment/utils/secure_storage_helper.dart';
 
 class SecureStorageManager implements SecureStorageInterface {
   SecureStorageHelper secureStorageHelper = SecureStorageHelper();
