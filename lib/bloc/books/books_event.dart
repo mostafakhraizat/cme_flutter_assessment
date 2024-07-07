@@ -5,9 +5,11 @@ sealed class BooksEvent {}
 
 class BooksInitialEvent extends BooksEvent {}
 
-class BookReOrderEvent extends BooksEvent {
+class BookReorderEvent extends BooksEvent {
   final int oldIndex;
   final int newIndex;
-
-  BookReOrderEvent(this.oldIndex, this.newIndex);
+  BookReorderEvent(
+    this.oldIndex,
+    this.newIndex,
+  );
 }

@@ -10,7 +10,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: const Text("Home"),
+      title: const Text("add email here///"),
       leading: IconButton(
         icon: const Icon(Icons.sort),
         onPressed: () {},

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cme_flutter_assessment/core/config/firebase_options.dart';
 import 'package:cme_flutter_assessment/resources/colors.dart';
 import 'package:cme_flutter_assessment/ui/authentication/pages/authentication_page.dart';
@@ -7,11 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/config/dio_config.dart';
+import 'core/utils/helper/shared_preferences_helper.dart';
 
 void main() async {
   client = Api();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await SharedPreferencesHelper().init(); // Initialize the singleton instance
+
   runApp(const MyApp());
 }
 
@@ -31,26 +36,26 @@ class MyApp extends StatelessWidget {
             },
             debugShowCheckedModeBanner: false,
             title: 'Bookly',
-            themeMode: ThemeMode.dark,
+            themeMode: ThemeMode.system,
             darkTheme: ThemeData(
+              cardTheme: const CardTheme(color: AppColors.buttonBackgroundDark),
               iconTheme: const IconThemeData(
                 color: Colors.white,
               ),
               appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.primaryBackgroundDark,
                 iconTheme: IconThemeData(
                   color: Colors.white,
                   size: 24.r,
                 ),
                 elevation: 0.0,
                 centerTitle: true,
-                color: AppColors.primaryBackgroundPrimary,
                 titleTextStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              bottomAppBarTheme: const BottomAppBarTheme(color: Colors.red),
               progressIndicatorTheme: const ProgressIndicatorThemeData(
                 color: Colors.white,
               ),
@@ -83,36 +88,37 @@ class MyApp extends StatelessWidget {
                   fontSize: 13.sp,
                 ),
               ),
-              canvasColor: AppColors.primaryBackgroundPrimary,
-              scaffoldBackgroundColor: AppColors.primaryBackgroundPrimary,
+              canvasColor: AppColors.primaryBackgroundDark,
+              scaffoldBackgroundColor: AppColors.primaryBackgroundDark,
             ),
             theme: ThemeData(
+              cardTheme: const CardTheme(color: AppColors.buttonBackground),
               iconTheme: const IconThemeData(
-                color: AppColors.primaryBackgroundPrimary,
+                color: AppColors.primaryBackgroundDark,
               ),
               appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.primaryBackground,
                 iconTheme: IconThemeData(
-                  color: AppColors.primaryBackgroundPrimary,
+                  color: AppColors.primaryBackgroundDark,
                   size: 24.r,
                 ),
                 elevation: 0.0,
                 centerTitle: true,
-                color: Colors.white,
                 titleTextStyle: TextStyle(
-                  color: AppColors.primaryBackgroundPrimary,
+                  color: AppColors.primaryBackgroundDark,
                   fontSize: 20.0.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               progressIndicatorTheme: const ProgressIndicatorThemeData(
-                color: AppColors.primaryBackgroundPrimary,
+                color: AppColors.primaryBackgroundDark,
               ),
               fontFamily: 'OpenSans-Regular',
-              indicatorColor: AppColors.primaryBackgroundPrimary,
+              indicatorColor: AppColors.primaryBackground,
               textTheme: TextTheme(
                 titleLarge: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.primaryBackgroundPrimary,
+                  color: AppColors.primaryBackgroundDark,
                   fontSize: 20.sp,
                 ),
                 bodyLarge: TextStyle(
@@ -122,22 +128,22 @@ class MyApp extends StatelessWidget {
                 ),
                 headlineLarge: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: AppColors.primaryBackgroundPrimary,
+                  color: AppColors.primaryBackgroundDark,
                   fontSize: 18.sp,
                 ),
                 titleMedium: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: AppColors.primaryBackgroundPrimary,
+                  color: AppColors.primaryBackgroundDark,
                   fontSize: 16.sp,
                 ),
                 bodyMedium: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: AppColors.primaryBackgroundPrimary.withOpacity(0.8),
+                  color: AppColors.primaryBackgroundDark.withOpacity(0.8),
                   fontSize: 13.sp,
                 ),
               ),
               canvasColor: Colors.white,
-              scaffoldBackgroundColor: Colors.white,
+              scaffoldBackgroundColor: AppColors.primaryBackground,
             ),
             home: const AuthenticationPage(),
           );

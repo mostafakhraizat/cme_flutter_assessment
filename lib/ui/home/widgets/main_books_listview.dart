@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:cme_flutter_assessment/bloc/books/books_bloc.dart';
+import 'package:cme_flutter_assessment/data/model/graph.dart';
 import 'package:cme_flutter_assessment/data/repository/books_repository.dart';
 import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/data/repository/shared_preferences_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,11 +22,11 @@ class MainBooksListView extends StatelessWidget {
         create: (context) => BooksBloc(
           BooksRepository(),
           SecureStorageRepository(),
+          SharedPreferencesRepository(),
+          Graph({}),
         )..add(BooksInitialEvent()),
         child: BlocConsumer<BooksBloc, BooksState>(
-          listener: (context, state) {
-            print(state);
-          },
+          listener: (context, state) {},
           builder: (blocContext, state) {
             if (state is BooksSuccessState) {
               return RefreshIndicator.adaptive(
@@ -35,11 +39,11 @@ class MainBooksListView extends StatelessWidget {
                   ).r,
                   onReorder: (oldIndex, newIndex) => blocContext
                       .read<BooksBloc>()
-                      .add(BookReOrderEvent(oldIndex, newIndex)),
+                      .add(BookReorderEvent(oldIndex, newIndex)),
                   children: [
                     ...state.books.map(
                       (book) => BookItem(
-                        key: ValueKey(book.title.toString()),
+                        key: ValueKey(book.slug),
                         item: book,
                       ),
                     )

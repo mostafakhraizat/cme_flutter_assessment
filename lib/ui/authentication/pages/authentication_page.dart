@@ -41,6 +41,7 @@ class AuthenticationPage extends StatelessWidget {
                           const CircularProgressIndicator.adaptive()
                         else
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               GoogleAuthenticationButton(
                                 onTap: () {

@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
 import 'package:cme_flutter_assessment/core/utils/mixin/logger_mixin.dart';
 import 'package:cme_flutter_assessment/data/interface/books_interface.dart';
+import 'package:cme_flutter_assessment/data/model/book.dart';
+import 'package:cme_flutter_assessment/data/model/books_respose.dart';
 import 'package:cme_flutter_assessment/main.dart';
-import 'package:cme_flutter_assessment/model/book.dart';
-import 'package:cme_flutter_assessment/model/books_respose.dart';
 import 'package:dio/dio.dart';
 
 class BooksServiceManager with LoggerMixin implements BooksInterface {
@@ -29,7 +31,6 @@ class BooksServiceManager with LoggerMixin implements BooksInterface {
     } on Exception catch (e) {
       return BooksResponse(BooksResponseState.unknown);
     } catch (e) {
-      print(e);
       return BooksResponse(BooksResponseState.unknown);
     }
   }

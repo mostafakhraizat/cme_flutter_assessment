@@ -1,5 +1,4 @@
-import 'package:cme_flutter_assessment/model/book.dart';
-import 'package:cme_flutter_assessment/resources/colors.dart';
+import 'package:cme_flutter_assessment/data/model/book.dart';
 import 'package:cme_flutter_assessment/ui/home/widgets/book_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

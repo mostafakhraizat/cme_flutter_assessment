@@ -17,9 +17,9 @@ class GoogleAuthenticationButton extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32).r,
-              color: AppColors.buttonBackgroundColorPrimary,
-            ),
+                borderRadius: BorderRadius.circular(32).r,
+                color: Theme.of(context).iconTheme.color,
+                border: Border.all(color: Theme.of(context).cardTheme.color!)),
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6).r,
             child: Row(
               children: [
