@@ -10,7 +10,7 @@ class SecureStorageManager implements SecureStorageInterface {
   }
 
   @override
-  Future<String?> getEmail() {
-    return secureStorageHelper.read("Email");
+  Future<String?> getEmail() async {
+    return await secureStorageHelper.read("Email");
   }
 }
