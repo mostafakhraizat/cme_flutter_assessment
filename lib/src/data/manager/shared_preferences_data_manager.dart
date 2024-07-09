@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:cme_flutter_assessment/core/utils/helper/shared_preferences_helper.dart';
 import 'package:cme_flutter_assessment/core/utils/mixin/logger_mixin.dart';
+import 'package:cme_flutter_assessment/src/data/interface/shared_preferences_interface.dart';
 import 'package:cme_flutter_assessment/src/data/model/graph.dart';
 
-class SharedPreferencesDataManager with LoggerMixin {
+class SharedPreferencesDataManager
+    with LoggerMixin
+    implements SharedPreferencesInterface {
   final SharedPreferencesHelper _preferencesHelper = SharedPreferencesHelper();
 
+  @override
   Future<void> saveGraphAction(String node, int target, Graph graph) async {
     graph.addEdge(node, target);
     logInfo("Current graph ${graph.getAllNodesData()}");
@@ -29,6 +33,7 @@ class SharedPreferencesDataManager with LoggerMixin {
         "sort_actions_graph", jsonEncode(updatedGraph));
   }
 
+  @override
   Future<Graph> getGraphActions() async {
     String? graphString = _preferencesHelper.getString("sort_actions_graph");
     logInfo(graphString ?? "");
