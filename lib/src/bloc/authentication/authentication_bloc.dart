@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:cme_flutter_assessment/data/interface/authentication_interface.dart';
-import 'package:cme_flutter_assessment/data/interface/secure_storage_interface.dart';
-import 'package:cme_flutter_assessment/data/repository/authentication_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/src/data/interface/authentication_interface.dart';
+import 'package:cme_flutter_assessment/src/data/interface/secure_storage_interface.dart';
+import 'package:cme_flutter_assessment/src/data/repository/authentication_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meta/meta.dart';
 
 part 'authentication_event.dart';
@@ -32,8 +33,7 @@ class AuthenticationBloc
       final account = await authenticationRepository.authenticateWithGoogle();
       if (account == null) {
         emit(AuthenticationInitial());
-        ScaffoldMessenger.of(event.context).showSnackBar(
-            const SnackBar(content: Text("Authentication revoked")));
+        Fluttertoast.showToast(msg: "Authentication Revoked.");
         return;
       }
       //store

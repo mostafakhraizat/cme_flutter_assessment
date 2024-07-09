@@ -1,8 +1,8 @@
-import 'package:cme_flutter_assessment/bloc/authentication/authentication_bloc.dart';
-import 'package:cme_flutter_assessment/data/repository/authentication_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/src/bloc/authentication/authentication_bloc.dart';
+import 'package:cme_flutter_assessment/src/data/repository/authentication_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
 import 'package:cme_flutter_assessment/resources/styles.dart';
-import 'package:cme_flutter_assessment/ui/authentication/widgets/block/authentication_logo.dart';
+import 'package:cme_flutter_assessment/src/ui/authentication/widgets/block/authentication_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,4 +1,4 @@
-import 'package:cme_flutter_assessment/data/manager/authentication_service_manager.dart';
+import 'package:cme_flutter_assessment/src/data/manager/authentication_service_manager.dart';
 
 class AuthenticationRepository {
   authenticateWithGoogle() =>
