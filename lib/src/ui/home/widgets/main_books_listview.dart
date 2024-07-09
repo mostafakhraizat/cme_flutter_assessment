@@ -1,4 +1,3 @@
-
 import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/src/bloc/books/books_bloc.dart';
 import 'package:cme_flutter_assessment/src/data/model/graph.dart';
@@ -44,11 +43,15 @@ class MainBooksListView extends StatelessWidget {
                       .read<BooksBloc>()
                       .add(BookReorderEvent(oldIndex, newIndex)),
                   onReorderStart: (index) {
+                    //cancel any older toasts
+                    Fluttertoast.cancel();
                     Fluttertoast.showToast(
                       msg: Strings.dragStarted,
                     );
                   },
                   onReorderEnd: (index) {
+                    //cancel any older toasts
+                    Fluttertoast.cancel();
                     Fluttertoast.showToast(
                       msg: Strings.sortSavedSuccessfully,
                     );
