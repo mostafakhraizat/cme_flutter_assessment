@@ -31,7 +31,7 @@ class SharedPreferencesDataManager with LoggerMixin {
 
   Future<Graph> getGraphActions() async {
     String? graphString = _preferencesHelper.getString("sort_actions_graph");
-    // logInfo(graphString ?? "");
+    logInfo(graphString ?? "");
     if (graphString == null) {
       return Graph({});
     }
