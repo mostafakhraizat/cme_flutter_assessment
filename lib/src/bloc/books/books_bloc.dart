@@ -52,14 +52,14 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         Fluttertoast.showToast(msg: processedState.reason);
       } else {
         for (Book book in books) {
-          books.addIf(!books.map((e) => e.id).contains(book.id),
-              booksResponse.books.firstOrNull);
+          books.addWhere(
+              !books.map((e) => e.id).contains(book.id), booksResponse.books);
         }
       }
       emit(BooksSuccessState(books));
     });
     on<BookReorderEvent>((event, emit) async {
-      //important step to store the action in the shared preferences
+      //important event, store the action in the shared preferences
       //store the action with no await
       addGraphAction(event.oldIndex, event.newIndex);
       reorderBooks(
@@ -71,14 +71,18 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   }
   //save to graph map
   addGraphAction(int oldIndex, int newIndex) {
+    //need to check for dragging down, to avoid last element(lastindex +1) exception
+    if (oldIndex < newIndex) {
+      newIndex--;
+    }
     _sharedPreferencesRepository.saveGraphAction(
         books.elementAt(oldIndex).id.toString(), newIndex, _graph);
   }
 
   //reorder the books from event
-  void reorderBooks(int oldIndex, int newIndex) {
+  void reorderBooks(int oldIndex, int newIndex, {bool indexSensitive = true}) {
     //need to check for dragging down, to avoid last element(lastindex +1) exception
-    if (oldIndex < newIndex) {
+    if (oldIndex < newIndex && indexSensitive) {
       newIndex--;
     }
     //switch elements
@@ -112,11 +116,15 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     for (final node in graph.getAllNodesData().entries) {
       final bookItem = books
           .where(
-            (element) => element.id.toString() == node.key,
+            (element) => element.id.toString() == node.key.toString(),
           )
           .firstOrNull;
       if (bookItem != null) {
-        reorderBooks(books.indexOf(bookItem), node.value);
+        reorderBooks(
+          books.indexOf(bookItem),
+          node.value,
+          indexSensitive: false,
+        );
       }
     }
   }

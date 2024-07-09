@@ -45,12 +45,12 @@ class MainBooksListView extends StatelessWidget {
                   onReorder: (oldIndex, newIndex) => blocContext
                       .read<BooksBloc>()
                       .add(BookReorderEvent(oldIndex, newIndex)),
-                  onReorderEnd: (index) {
+                  onReorderStart: (index) {
                     Fluttertoast.showToast(
                       msg: Strings.dragStarted,
                     );
                   },
-                  onReorderStart: (index) {
+                  onReorderEnd: (index) {
                     Fluttertoast.showToast(
                       msg: Strings.sortSavedSuccessfully,
                     );

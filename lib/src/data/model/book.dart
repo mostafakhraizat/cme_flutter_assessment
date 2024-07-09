@@ -13,7 +13,7 @@ class Book {
     return Book(
       //since there is no id for each book
       //book is identified by its int as following
-      id: data['i'],
+      id: data['id'],
       title: data['title'],
       author: data['author'],
       imageUrl: data['image_url'],
