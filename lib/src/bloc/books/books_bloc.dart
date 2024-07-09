@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
@@ -12,7 +11,6 @@ import 'package:cme_flutter_assessment/src/data/repository/secure_storage_reposi
 import 'package:cme_flutter_assessment/src/data/repository/shared_preferences_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:meta/meta.dart';
 
 part 'books_event.dart';
 part 'books_state.dart';
@@ -40,15 +38,17 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       if (books.isNotEmpty) reorderBooksFromGraph(books);
       emit(evaluateBooksResponse(booksResponse.booksResponseState, books));
     });
+
     on<BooksRefreshEvent>((event, emit) async {
       emit(BooksLoadingState());
       final String? storedEmail = await _secureStorageRepository.getEmail();
       final BooksResponse booksResponse =
           await _booksRepository.fetchBooks(storedEmail ?? "");
-      //display the error in case, and emit the previous books.
+      //display the error in case, and emit the prev got books.
       final processedState =
           evaluateBooksResponse(booksResponse.booksResponseState, books);
       if (processedState is BooksErrorState) {
+        Fluttertoast.cancel();
         Fluttertoast.showToast(msg: processedState.reason);
       } else {
         for (Book book in books) {
@@ -69,9 +69,9 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       emit(BooksSuccessState(books));
     });
   }
-  //save to graph map
+  //save to graph
   addGraphAction(int oldIndex, int newIndex) {
-    //need to check for dragging down, to avoid last element(lastindex +1) exception
+    //need to check for dragging down, to avoid last element (lastindex +1) exception
     if (oldIndex < newIndex) {
       newIndex--;
     }
@@ -82,6 +82,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   //reorder the books from event
   void reorderBooks(int oldIndex, int newIndex, {bool indexSensitive = true}) {
     //need to check for dragging down, to avoid last element(lastindex +1) exception
+    // indexSensitive, for this index check was already saved in the graph data, newIndex is already subtracted
     if (oldIndex < newIndex && indexSensitive) {
       newIndex--;
     }
@@ -111,6 +112,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     }
   }
 
+  //apply sort from the graph data
   void reorderBooksFromGraph(List<Book> books) async {
     Graph graph = await _sharedPreferencesRepository.getGraphActions();
     for (final node in graph.getAllNodesData().entries) {

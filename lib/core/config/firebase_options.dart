@@ -10,7 +10,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions are not supported for IOS}.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform}.',
@@ -23,19 +25,5 @@ class DefaultFirebaseOptions {
     appId: '1:486108475634:android:fb8d533770b5ce03c1e06b',
     messagingSenderId: '486108475634',
     projectId: 'cme-assessment',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAKUimx-86ytzwIKKDS7d1ruACuHXmF-Mg',
-    appId: '1:486108475634:android:fb8d533770b5ce03c1e06b',
-    messagingSenderId: '486108475634',
-    projectId: 'cme-assessment',
-    // databaseURL: 'https://globalfarms-357711-default-rtdb.firebaseio.com',
-    // storageBucket: 'globalfarms-357711.appspot.com',
-    // androidClientId:
-    //     '612047941260-fptb1ulhf5a8j5a8rlm2ujfhlv58fe90.apps.googleusercontent.com',
-    // iosClientId:
-    //     '612047941260-7r4i39kqnt3k3duur9s93roqf8lh3r8s.apps.googleusercontent.com',
-    // iosBundleId: 'com.techquarters.globalfarms',
   );
 }

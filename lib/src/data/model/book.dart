@@ -11,8 +11,6 @@ class Book {
       required this.imageUrl});
   factory Book.fromJson(Map<String, dynamic> data) {
     return Book(
-      //since there is no id for each book
-      //book is identified by its int as following
       id: data['id'],
       title: data['title'],
       author: data['author'],

@@ -1,14 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:cme_flutter_assessment/resources/strings.dart';
-import 'package:cme_flutter_assessment/src/data/interface/authentication_interface.dart';
-import 'package:cme_flutter_assessment/src/data/interface/secure_storage_interface.dart';
 import 'package:cme_flutter_assessment/src/data/repository/authentication_repository.dart';
 import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:meta/meta.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

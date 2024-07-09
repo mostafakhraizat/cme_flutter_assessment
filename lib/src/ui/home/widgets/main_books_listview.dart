@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/src/bloc/books/books_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:cme_flutter_assessment/src/data/model/graph.dart';
 import 'package:cme_flutter_assessment/src/data/repository/books_repository.dart';
 import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
 import 'package:cme_flutter_assessment/src/data/repository/shared_preferences_repository.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

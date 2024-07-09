@@ -5,7 +5,6 @@ import 'package:cme_flutter_assessment/src/ui/home/pages/main_books_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'core/config/dio_config.dart';
 import 'core/utils/helper/shared_preferences_helper.dart';
@@ -16,7 +15,6 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPreferencesHelper()
       .init(); // Initialize sharedpreferences singleton instance
-  // SharedPreferencesHelper().remove("sort_actions_graph");
   runApp(const MyApp());
 }
 

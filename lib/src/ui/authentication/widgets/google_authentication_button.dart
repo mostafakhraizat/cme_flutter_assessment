@@ -1,4 +1,3 @@
-import 'package:cme_flutter_assessment/resources/colors.dart';
 import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
