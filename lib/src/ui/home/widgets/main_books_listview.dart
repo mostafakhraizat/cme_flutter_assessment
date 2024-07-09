@@ -36,6 +36,7 @@ class MainBooksListView extends StatelessWidget {
                       .add(BooksRefreshEvent(blocContext));
                 },
                 child: ReorderableListView(
+                  primary: true,
                   padding: const EdgeInsets.symmetric(
                     vertical: 16,
                   ).r,

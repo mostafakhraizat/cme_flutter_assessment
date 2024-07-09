@@ -10,6 +10,17 @@ class MainBooksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          PrimaryScrollController.of(context).animateTo(0,
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+        },
+        backgroundColor: Theme.of(context).iconTheme.color,
+        child: Icon(
+          Icons.arrow_upward,
+          color: Theme.of(context).scaffoldBackgroundColor,
+        ),
+      ),
       appBar: const MainBooksAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8).r,

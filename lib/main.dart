@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           },
           debugShowCheckedModeBanner: false,
           title: 'Bookly',
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.system,
           darkTheme: AppThemes.dark,
           theme: AppThemes.light,
           home: const AuthenticationPage(),

@@ -51,11 +51,17 @@ class AuthenticationPage extends StatelessWidget {
                               ),
                               if (state is AuthenticationErrorState)
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(state.reason,
+                                  padding: const EdgeInsets.only(
+                                      top: 12.0, left: 12, right: 12),
+                                  child: Center(
+                                    child: Text(
+                                      state.reason,
+                                      textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium),
+                                          .bodyMedium,
+                                    ),
+                                  ),
                                 )
                             ],
                           ),

@@ -1,5 +1,5 @@
-import 'package:cme_flutter_assessment/src/data/model/user.dart';
+import 'package:cme_flutter_assessment/src/data/model/authentication_response.dart';
 
 abstract interface class AuthenticationInterface {
-  Future<User?> authenticateWithGoogle();
+  Future<AuthenticationResponse> authenticateWithGoogle();
 }

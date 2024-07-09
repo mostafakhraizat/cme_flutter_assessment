@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
 import 'package:cme_flutter_assessment/core/utils/extensions/list_extensions.dart';
@@ -100,7 +99,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       case BooksResponseState.formatError:
         return BooksErrorState(Strings.anErrorOccurredLoadingBooks);
       case BooksResponseState.networkError:
-        return BooksErrorState(Strings.networkErrorBooksResponse);
+        return BooksErrorState(Strings.networkErrorResponse);
       case BooksResponseState.clientError:
         return BooksErrorState(Strings.clientErrorBooksResponse);
       case BooksResponseState.serverError:

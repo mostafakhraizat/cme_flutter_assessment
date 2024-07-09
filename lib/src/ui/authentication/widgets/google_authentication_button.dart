@@ -32,7 +32,7 @@ class GoogleAuthenticationButton extends StatelessWidget {
                   Strings.signInWithGoogle,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyLarge
+                      .labelMedium
                       ?.copyWith(fontFamily: ""),
                 ),
               ],

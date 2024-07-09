@@ -8,6 +8,8 @@ class Strings {
   static const String bookly = "Bookly";
   static const String signInWithGoogle = "Sign in with google";
   static const String authenticationRevoked = "Authentication Revoked";
+  static const String deviceUnsupported =
+      "Your device doesn't support this operation.";
   static const String recommended = "Recommended";
   static const String dragStarted = "Drag started";
   static const String sortSavedSuccessfully = "Sort saved successfully";
@@ -15,7 +17,7 @@ class Strings {
   static const String tryAgain = "Try again";
   static const String anErrorOccurredLoadingBooks =
       "An error occurred while loading books.";
-  static const String networkErrorBooksResponse =
+  static const String networkErrorResponse =
       "Network error, Please check your internet connection and try again.";
   static const String clientErrorBooksResponse =
       "Unable to get books right now, please try again later.";
