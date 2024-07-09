@@ -24,24 +24,19 @@ class BooksErrorWidget extends StatelessWidget {
         14.verticalSpace,
         InkWell(
           onTap: onRetry,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 142.w,
-                height: 42,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3).r,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-                child: Center(
-                  child: Text(
-                    Strings.tryAgain,
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                ),
-              )
-            ],
+          child: Container(
+            width: 142.w,
+            height: 42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(3).r,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            child: Center(
+              child: Text(
+                Strings.tryAgain,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
           ),
         )
       ],
