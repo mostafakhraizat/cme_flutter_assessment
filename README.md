@@ -47,6 +47,7 @@ Used a layered code architecture, app is layers are designed as following:
 
 #### 1- UI layer: implements the view, including pages and widgets, separated based on the feature.
 #### 2- Data layer: This layer responsible for data fetch and processing, it includes four main levels, (Model, Repository, Manager and Interface).
+note that the interface now is not that important, but later on, if I needed to add a new data manager (eg: for books cache), the interface will ensure all functions are aligned and implemented.
 #### 3- Controller layer: This layer responsible for the application's logic, it contains the Blocs, separated to features. The Bloc handles user events, processes events, and emits states.
 
 ### Other folders:
