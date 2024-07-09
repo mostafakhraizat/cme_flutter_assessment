@@ -34,13 +34,14 @@ A simple books exploring mobile application.
 #### 4- Sort is saved: The application will save the user sorting actions in node->node graph structure.
 #### 5- Sort actions are executed after the books are initially loaded.
 #### 6- Error handling: error outputs are managed based on the app's situation (no internet, wrong parsing, server failures...).
+#### 7- Theme responsiveness: App is responsive with light and dark themes.
 
 
 
 ## State management and architecture:
 ### State management
 
-##### I used the Bloc state management, with a solid, clean and layered architecture.
+##### I used the Bloc state management, with a solid, clean and layered architecture, the followed architecture makes my code maintainable and scalable for future changes.
 
 ### Application architecture and layers
 Used a layered code architecture, app is layers are designed as following:
