@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
 import 'package:cme_flutter_assessment/core/utils/mixin/logger_mixin.dart';
-import 'package:cme_flutter_assessment/data/interface/books_interface.dart';
-import 'package:cme_flutter_assessment/data/model/book.dart';
-import 'package:cme_flutter_assessment/data/model/books_respose.dart';
+import 'package:cme_flutter_assessment/src/data/interface/books_interface.dart';
+import 'package:cme_flutter_assessment/src/data/model/book.dart';
+import 'package:cme_flutter_assessment/src/data/model/books_respose.dart';
 import 'package:cme_flutter_assessment/main.dart';
 import 'package:dio/dio.dart';
 

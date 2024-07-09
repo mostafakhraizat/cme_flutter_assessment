@@ -1,13 +1,15 @@
 import 'dart:math';
 
-import 'package:cme_flutter_assessment/bloc/books/books_bloc.dart';
-import 'package:cme_flutter_assessment/data/model/graph.dart';
-import 'package:cme_flutter_assessment/data/repository/books_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/shared_preferences_repository.dart';
+import 'package:cme_flutter_assessment/src/bloc/books/books_bloc.dart';
+import 'package:cme_flutter_assessment/src/data/model/graph.dart';
+import 'package:cme_flutter_assessment/src/data/repository/books_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/shared_preferences_repository.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'book_item_widget.dart';
 import 'books_error_widget.dart';
@@ -31,7 +33,9 @@ class MainBooksListView extends StatelessWidget {
             if (state is BooksSuccessState) {
               return RefreshIndicator.adaptive(
                 onRefresh: () async {
-                  blocContext.read<BooksBloc>().add(BooksInitialEvent());
+                  blocContext
+                      .read<BooksBloc>()
+                      .add(BooksRefreshEvent(blocContext));
                 },
                 child: ReorderableListView(
                   padding: const EdgeInsets.symmetric(
@@ -40,13 +44,21 @@ class MainBooksListView extends StatelessWidget {
                   onReorder: (oldIndex, newIndex) => blocContext
                       .read<BooksBloc>()
                       .add(BookReorderEvent(oldIndex, newIndex)),
+                  onReorderEnd: (index) {
+                    Fluttertoast.showToast(msg: "Drag started");
+                  },
+                  onReorderStart: (index) {
+                    Fluttertoast.showToast(msg: "Drop in the desired location");
+                  },
+                  autoScrollerVelocityScalar: 100,
+                  footer: const Text("You're all caught up"),
                   children: [
                     ...state.books.map(
                       (book) => BookItem(
-                        key: ValueKey(book.slug),
+                        key: ValueKey(book.id.toString()),
                         item: book,
                       ),
-                    )
+                    ),
                   ],
                 ),
               );

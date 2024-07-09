@@ -1,20 +1,18 @@
-import 'package:cme_flutter_assessment/core/utils/helper/shared_preferences_helper.dart';
-import 'package:cme_flutter_assessment/data/manager/secure_storage_manager.dart';
+import 'package:cme_flutter_assessment/src/data/manager/secure_storage_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+class MainBooksAppbar extends StatefulWidget implements PreferredSizeWidget {
+  const MainBooksAppbar({super.key});
 
   @override
-  State<HomeAppBar> createState() => _HomeAppBarState();
+  State<MainBooksAppbar> createState() => _MainBooksAppbarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class _HomeAppBarState extends State<HomeAppBar> {
+class _MainBooksAppbarState extends State<MainBooksAppbar> {
   final ValueNotifier<String?> _email = ValueNotifier(null);
   getEmail() async {
     _email.value = await SecureStorageManager().getEmail();

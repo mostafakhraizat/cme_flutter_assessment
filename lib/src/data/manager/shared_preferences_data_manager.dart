@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:cme_flutter_assessment/core/utils/helper/shared_preferences_helper.dart';
 import 'package:cme_flutter_assessment/core/utils/mixin/logger_mixin.dart';
-import 'package:cme_flutter_assessment/data/model/graph.dart';
+import 'package:cme_flutter_assessment/src/data/model/graph.dart';
 
 class SharedPreferencesDataManager with LoggerMixin {
   final SharedPreferencesHelper _preferencesHelper = SharedPreferencesHelper();

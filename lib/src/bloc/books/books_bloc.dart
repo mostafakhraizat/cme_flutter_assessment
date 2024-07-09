@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
-import 'package:cme_flutter_assessment/data/model/book.dart';
-import 'package:cme_flutter_assessment/data/model/books_respose.dart';
-import 'package:cme_flutter_assessment/data/model/graph.dart';
-import 'package:cme_flutter_assessment/data/repository/books_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/secure_storage_repository.dart';
-import 'package:cme_flutter_assessment/data/repository/shared_preferences_repository.dart';
+import 'package:cme_flutter_assessment/core/utils/extensions/list_extensions.dart';
+import 'package:cme_flutter_assessment/src/data/model/book.dart';
+import 'package:cme_flutter_assessment/src/data/model/books_respose.dart';
+import 'package:cme_flutter_assessment/src/data/model/graph.dart';
+import 'package:cme_flutter_assessment/src/data/repository/books_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
+import 'package:cme_flutter_assessment/src/data/repository/shared_preferences_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 part 'books_event.dart';
@@ -36,6 +38,17 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       if (books.isNotEmpty) reorderBooksFromGraph(books);
       emit(evaluateBooksResponse(booksResponse.booksResponseState, books));
     });
+    on<BooksRefreshEvent>((event, emit) async {
+      emit(BooksLoadingState());
+      final String? storedEmail = await _secureStorageRepository.getEmail();
+      final BooksResponse booksResponse =
+          await _booksRepository.fetchBooks(storedEmail ?? "");
+      for (Book book in books) {
+        books.addIf(!books.map((e) => e.id).contains(book.id),
+            booksResponse.books.first);
+      }
+      emit(evaluateBooksResponse(booksResponse.booksResponseState, books));
+    });
     on<BookReorderEvent>((event, emit) async {
       //important step to store the action in the shared preferences
       //store the action with no await
@@ -50,7 +63,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   //save to graph map
   addGraphAction(int oldIndex, int newIndex) {
     _sharedPreferencesRepository.saveGraphAction(
-        books.elementAt(oldIndex).slug, newIndex, _graph);
+        books.elementAt(oldIndex).id.toString(), newIndex, _graph);
   }
 
   //reorder the books from event
@@ -95,7 +108,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     for (final node in graph.getAllNodesData().entries) {
       final bookItem = books
           .where(
-            (element) => element.slug == node.key,
+            (element) => element.id.toString() == node.key,
           )
           .firstOrNull;
       if (bookItem != null) {

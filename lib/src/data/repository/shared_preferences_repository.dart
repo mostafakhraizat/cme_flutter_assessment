@@ -1,5 +1,5 @@
-import 'package:cme_flutter_assessment/data/manager/shared_preferences_data_manager.dart';
-import 'package:cme_flutter_assessment/data/model/graph.dart';
+import 'package:cme_flutter_assessment/src/data/manager/shared_preferences_data_manager.dart';
+import 'package:cme_flutter_assessment/src/data/model/graph.dart';
 
 class SharedPreferencesRepository {
   final SharedPreferencesDataManager _sharedPreferencesDataManager =
