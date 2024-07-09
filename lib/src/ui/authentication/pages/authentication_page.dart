@@ -54,7 +54,9 @@ class AuthenticationPage extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 12.0),
                                   child: Text(state.reason,
-                                      style: AppTextStyle.bodyErrorStyle),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium),
                                 )
                             ],
                           ),

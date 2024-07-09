@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/src/data/interface/authentication_interface.dart';
 import 'package:cme_flutter_assessment/src/data/interface/secure_storage_interface.dart';
 import 'package:cme_flutter_assessment/src/data/repository/authentication_repository.dart';
@@ -33,7 +34,7 @@ class AuthenticationBloc
       final account = await authenticationRepository.authenticateWithGoogle();
       if (account == null) {
         emit(AuthenticationInitial());
-        Fluttertoast.showToast(msg: "Authentication Revoked.");
+        Fluttertoast.showToast(msg: Strings.authenticationRevoked);
         return;
       }
       //store

@@ -1,3 +1,4 @@
+import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:flutter/material.dart';
 
 class MainBooksHeader extends StatelessWidget {
@@ -8,7 +9,7 @@ class MainBooksHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "Recommended",
+          Strings.recommended,
           style: Theme.of(context).textTheme.headlineLarge,
         )
       ],

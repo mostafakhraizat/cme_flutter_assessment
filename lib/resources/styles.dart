@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cme_flutter_assessment/resources/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppTextStyle {
-  static TextStyle? bodyErrorStyle = TextStyle(
-    color: Colors.white,
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-  );
-}
+class AppTextStyle {}
 
 class AppThemes {
   static ThemeData get light => ThemeData(
@@ -40,6 +34,11 @@ class AppThemes {
             fontWeight: FontWeight.w700,
             color: AppColors.primaryBackgroundDark,
             fontSize: 20.sp,
+          ),
+          labelMedium: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: AppColors.primaryBackground,
+            fontSize: 14.sp,
           ),
           bodyLarge: TextStyle(
             fontWeight: FontWeight.w600,
@@ -95,6 +94,11 @@ class AppThemes {
             fontWeight: FontWeight.w700,
             color: Colors.white,
             fontSize: 20.sp,
+          ),
+          labelMedium: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: AppColors.primaryBackgroundDark,
+            fontSize: 14.sp,
           ),
           bodyLarge: TextStyle(
             fontWeight: FontWeight.w600,

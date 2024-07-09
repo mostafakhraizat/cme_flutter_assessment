@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
 import 'package:cme_flutter_assessment/core/utils/extensions/list_extensions.dart';
+import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/src/data/model/book.dart';
 import 'package:cme_flutter_assessment/src/data/model/books_respose.dart';
 import 'package:cme_flutter_assessment/src/data/model/graph.dart';
@@ -10,6 +11,7 @@ import 'package:cme_flutter_assessment/src/data/repository/books_repository.dart
 import 'package:cme_flutter_assessment/src/data/repository/secure_storage_repository.dart';
 import 'package:cme_flutter_assessment/src/data/repository/shared_preferences_repository.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meta/meta.dart';
 
 part 'books_event.dart';
@@ -43,11 +45,18 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       final String? storedEmail = await _secureStorageRepository.getEmail();
       final BooksResponse booksResponse =
           await _booksRepository.fetchBooks(storedEmail ?? "");
-      for (Book book in books) {
-        books.addIf(!books.map((e) => e.id).contains(book.id),
-            booksResponse.books.first);
+      //display the error in case, and emit the previous books.
+      final processedState =
+          evaluateBooksResponse(booksResponse.booksResponseState, books);
+      if (processedState is BooksErrorState) {
+        Fluttertoast.showToast(msg: processedState.reason);
+      } else {
+        for (Book book in books) {
+          books.addIf(!books.map((e) => e.id).contains(book.id),
+              booksResponse.books.firstOrNull);
+        }
       }
-      emit(evaluateBooksResponse(booksResponse.booksResponseState, books));
+      emit(BooksSuccessState(books));
     });
     on<BookReorderEvent>((event, emit) async {
       //important step to store the action in the shared preferences
@@ -84,22 +93,17 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       case BooksResponseState.success:
         return BooksSuccessState(books);
       case BooksResponseState.formatError:
-        return BooksErrorState("An error occurred while loading books.");
+        return BooksErrorState(Strings.anErrorOccurredLoadingBooks);
       case BooksResponseState.networkError:
-        return BooksErrorState(
-            "Network error, Please check your internet connection and try again.");
+        return BooksErrorState(Strings.networkErrorBooksResponse);
       case BooksResponseState.clientError:
-        return BooksErrorState(
-            "Unable to get books right now, please try again later.");
+        return BooksErrorState(Strings.clientErrorBooksResponse);
       case BooksResponseState.serverError:
-        return BooksErrorState(
-            "Server didn't respond, please try again later.");
+        return BooksErrorState(Strings.serverErrorBooksResponse);
       case BooksResponseState.unknown:
-        return BooksErrorState(
-            "An unknown error occurred while getting your books.");
+        return BooksErrorState(Strings.unknownErrorBooksResponse);
       default:
-        return BooksErrorState(
-            "An unknown error occurred while getting your books.");
+        return BooksErrorState(Strings.unknownErrorBooksResponse);
     }
   }
 

@@ -1,7 +1,4 @@
-import 'dart:collection';
-
 import 'package:cme_flutter_assessment/core/config/firebase_options.dart';
-import 'package:cme_flutter_assessment/resources/colors.dart';
 import 'package:cme_flutter_assessment/resources/styles.dart';
 import 'package:cme_flutter_assessment/src/ui/authentication/pages/authentication_page.dart';
 import 'package:cme_flutter_assessment/src/ui/home/pages/main_books_page.dart';
@@ -28,20 +25,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        enableScaleText: () => true,
-        builder: (BuildContext context, Widget? child) {
-          return MaterialApp(
-            routes: {
-              "/home": (context) => const MainBooksPage(),
-              "/authentication": (context) => const AuthenticationPage(),
-            },
-            debugShowCheckedModeBanner: false,
-            title: 'Bookly',
-            themeMode: ThemeMode.light,
-            darkTheme: AppThemes.dark,
-            theme: AppThemes.light,
-            home: const AuthenticationPage(),
-          );
-        });
+      enableScaleText: () => true,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          routes: {
+            "/home": (context) => const MainBooksPage(),
+            "/authentication": (context) => const AuthenticationPage(),
+          },
+          debugShowCheckedModeBanner: false,
+          title: 'Bookly',
+          themeMode: ThemeMode.dark,
+          darkTheme: AppThemes.dark,
+          theme: AppThemes.light,
+          home: const AuthenticationPage(),
+        );
+      },
+    );
   }
 }

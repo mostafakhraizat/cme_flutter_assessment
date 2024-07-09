@@ -30,8 +30,11 @@ class GoogleAuthenticationButton extends StatelessWidget {
                 ),
                 12.horizontalSpace,
                 Text(
-                  "Sign in with google",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  Strings.signInWithGoogle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(fontFamily: ""),
                 ),
               ],
             ),

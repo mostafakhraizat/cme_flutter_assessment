@@ -23,7 +23,7 @@ class AuthenticationLogo extends StatelessWidget {
               BlendMode.srcIn),
         ),
         Text(
-          'Bookly',
+          Strings.bookly,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ],

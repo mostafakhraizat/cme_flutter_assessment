@@ -1,3 +1,4 @@
+import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/resources/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class BooksErrorWidget extends StatelessWidget {
         Text(
           reason,
           textAlign: TextAlign.center,
-          style: AppTextStyle.bodyErrorStyle,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         14.verticalSpace,
         InkWell(
@@ -36,8 +37,8 @@ class BooksErrorWidget extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Try again",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    Strings.tryAgain,
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
               )

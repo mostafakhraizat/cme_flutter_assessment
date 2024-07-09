@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cme_flutter_assessment/core/utils/enum/books_enums.dart';
 import 'package:cme_flutter_assessment/core/utils/mixin/logger_mixin.dart';
@@ -25,10 +26,16 @@ class BooksServiceManager with LoggerMixin implements BooksInterface {
       }
       return BooksResponse(BooksResponseState.clientError);
     } on DioException catch (e) {
-      return BooksResponse(BooksResponseState.networkError);
-    } on TypeError catch (e) {
+      if (e.type == DioExceptionType.sendTimeout) {
+        return BooksResponse(BooksResponseState.serverError);
+      }
+      if (e.type == DioExceptionType.connectionError) {
+        return BooksResponse(BooksResponseState.networkError);
+      }
+      return BooksResponse(BooksResponseState.unknown);
+    } on TypeError {
       return BooksResponse(BooksResponseState.formatError);
-    } on Exception catch (e) {
+    } on Exception {
       return BooksResponse(BooksResponseState.unknown);
     } catch (e) {
       return BooksResponse(BooksResponseState.unknown);

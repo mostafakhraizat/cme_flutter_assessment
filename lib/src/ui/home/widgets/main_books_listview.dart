@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cme_flutter_assessment/resources/strings.dart';
 import 'package:cme_flutter_assessment/src/bloc/books/books_bloc.dart';
 import 'package:cme_flutter_assessment/src/data/model/graph.dart';
 import 'package:cme_flutter_assessment/src/data/repository/books_repository.dart';
@@ -45,13 +46,17 @@ class MainBooksListView extends StatelessWidget {
                       .read<BooksBloc>()
                       .add(BookReorderEvent(oldIndex, newIndex)),
                   onReorderEnd: (index) {
-                    Fluttertoast.showToast(msg: "Drag started");
+                    Fluttertoast.showToast(
+                      msg: Strings.dragStarted,
+                    );
                   },
                   onReorderStart: (index) {
-                    Fluttertoast.showToast(msg: "Drop in the desired location");
+                    Fluttertoast.showToast(
+                      msg: Strings.sortSavedSuccessfully,
+                    );
                   },
                   autoScrollerVelocityScalar: 100,
-                  footer: const Text("You're all caught up"),
+                  footer: const Text(Strings.youAreAllCaughtUp),
                   children: [
                     ...state.books.map(
                       (book) => BookItem(
